@@ -45,9 +45,68 @@ class ModelTrainer:
         "XGBoost": XGBRegressor(),
         "KNN": KNeighborsRegressor(),
         "CatBoost": CatBoostRegressor(verbose=False),
-      } 
+      }
+
+      params = {
+        "Linear Regression": {},
+        "Decision Tree": {
+          'criterion': ['squared_error', 'friedman_mse'],
+          'splitter': ['best', 'random'],
+          'max_depth': [2, 4, 6, 8, 10, None],
+          'max_features': ['sqrt', 'log2'],
+          'min_samples_split': [2, 5, 10],
+          'min_samples_leaf': [1, 2, 4],
+        },
+        "Random Forest": {
+          'n_estimators': [100, 200, 300, 400, 500],
+          'criterion': ['squared_error', 'friedman_mse'],
+          'max_depth': [2, 4, 6, 8, 10, None],
+          'max_features': ['sqrt', 'log2'],
+          'min_samples_split': [2, 5, 10],
+          'min_samples_leaf': [1, 2, 4],
+        },
+        "Gradient Boosting": {
+          'n_estimators': [100, 200, 300, 400, 500],
+          'learning_rate': [0.001, 0.01, 0.1],
+          'subsample': [0.5, 0.7, 1.0],
+          'max_depth': [2, 4, 6, 8, 10, None],
+          'max_features': ['sqrt', 'log2'],
+          'min_samples_split': [2, 5, 10],
+          'min_samples_leaf': [1, 2, 4],
+        },
+        "AdaBoost": {
+          'n_estimators': [50, 100, 200, 400, 800],
+          'learning_rate': [0.001, 0.01, 0.1, 1],
+          'loss': ['linear', 'exponential'],
+        },
+        "XGBoost": {
+          'n_estimators': [100, 200, 300, 400, 500],
+          'learning_rate': [0.001, 0.01, 0.1, 1],
+          'subsample': [0.5, 0.7, 1.0],
+          'max_depth': [2, 4, 6, 8, 10, None],
+          'colsample_bytree': [0.5, 0.7, 1.0],
+          'colsample_bylevel': [0.5, 0.7, 1.0],
+          'reg_alpha': [0, 0.5, 1],
+        },
+        "KNN": {
+          'n_neighbors': [3, 5, 7, 9],
+          'weights': ['uniform', 'distance'],
+          'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute'],
+          'leaf_size': [10, 20, 30, 40, 50],
+          'metric': ['minkowski', 'euclidean', 'manhattan'],
+        },
+        "CatBoost": {
+          'iterations': [100, 200, 300, 400, 500],
+          'depth': [2, 4, 6, 8, 10],
+          'learning_rate': [0.001, 0.01, 0.1, 1],
+          'l2_leaf_reg': [1, 3, 5, 7, 9],
+          'border_count': [32, 64, 128],
+        },
+      }
+
+
       
-      model_report:dict = evaluate_model(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, models=models)
+      model_report:dict = evaluate_model(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, models=models,params=params)
 
       # to get the best model score from the model_report:dict
       best_model_score = max(sorted(model_report.values()))
