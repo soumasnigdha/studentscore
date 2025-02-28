@@ -11,9 +11,9 @@ from src.exception import CustomException
 from sklearn.metrics import r2_score
 from sklearn.model_selection import GridSearchCV
 
-def save_obj(obj, file_path):
+def save_object(obj, file_path):
     """
-    save_obj method is responsible for saving object.
+    save_object method is responsible for saving object.
     """
     try:
         logging.info(f"Saving object at {file_path}")
@@ -48,9 +48,19 @@ def evaluate_model(X_train, y_train, X_test, y_test, models, params):
             r2 = r2_score(y_test, y_pred)
             model_report[model_name] = r2
             logging.info(f"Model {model_name} evaluated with R2 score {r2}")
+        
         return model_report
 
     except Exception as e:
         raise CustomException(e, sys)
     
+
+def load_object(file_path):
+    try:
+        with open(file_path, "rb") as file_obj:
+            return dill.load(file_obj)
+    except Exception as e:
+        raise CustomException(e,sys)
+    
+
 

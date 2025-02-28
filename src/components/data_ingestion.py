@@ -33,7 +33,7 @@ class DataIngestion:
         """
         logging.info("Initiating data ingestion process")
         try:
-            df = pd.read_csv('notebook\data\stud.csv')
+            df = pd.read_csv('notebook/data/stud.csv')
             logging.info("Read the raw data as a dataframe")
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
@@ -66,6 +66,5 @@ if __name__ == "__main__":
     train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data, test_data)
 
     modeltrainer = ModelTrainer()
-    modeltrainer.initiate_model_trainer(train_arr, test_arr)
-
-    print(modeltrainer.initiate_model_trainer(train_arr, test_arr))
+    score = modeltrainer.initiate_model_trainer(train_arr, test_arr)
+    print(score)

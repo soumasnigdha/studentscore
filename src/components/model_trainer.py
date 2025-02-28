@@ -12,7 +12,7 @@ from xgboost import XGBRegressor
 
 from src.exception import CustomException
 from src.logger import logging
-from src.utils import save_obj, evaluate_model
+from src.utils import save_object, evaluate_model
 
 
 @dataclass
@@ -120,7 +120,7 @@ class ModelTrainer:
         raise CustomException("No best model found", sys)
       logging.info(f"Best model found: {best_model_name} with R2 score: {best_model_score}")
 
-      save_obj(
+      save_object(
         file_path=self.model_trainer_config.trained_model_file_path,
         obj=best_model
         )
