@@ -1,3 +1,3 @@
 ## Student Score Prediction
 
-This is a very basic machine learning project predicting student scores by comparing multiple regression algorithms and selecting the best performer. It is also deployed as a Flask app, allowing users to input new data for real-time score predictions.
+A basic machine learning project that predicts student scores using various regression models, selecting the best one, and deployed as a Flask API on Render: https://mlproject-hw1j.onrender.com, for on-demand predictions with new data.
