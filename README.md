@@ -80,9 +80,8 @@ To run this project (for demonstration purposes), you'll need to set up a Python
 2.  **Virtual Environment**:  It's recommended to use a virtual environment:
 
     ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Linux/macOS
-    venv\Scripts\activate  # On Windows
+    conda create -n venv python=3.12
+conda activate venv
     ```
 3.  **Dependencies**:  Install the required Python packages:
 
