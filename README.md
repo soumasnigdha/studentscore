@@ -81,7 +81,7 @@ To run this project (for demonstration purposes), you'll need to set up a Python
 
     ```bash
     conda create -n venv python=3.12
-conda activate venv
+    conda activate venv
     ```
 3.  **Dependencies**:  Install the required Python packages:
 
